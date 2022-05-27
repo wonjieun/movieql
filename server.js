@@ -14,6 +14,10 @@ const typeDefs = gql`
     allMovies: [Movie]
     movie(id: ID): Movie
   }
+  type Mutation {
+    postMovie(title: String, genre: ID): Movie
+    deleteMovie(id: ID): Boolean
+  }
 `;
 
 const server = new ApolloServer({ typeDefs });
