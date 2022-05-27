@@ -1,9 +1,18 @@
 import { ApolloServer, gql } from 'apollo-server';
 
 const typeDefs = gql`
+  type Genre {
+    id: ID
+    name: String
+  }
+  type Movie {
+    id: ID
+    title: String
+    genre: Genre
+  }
   type Query {
-    text: String
-    hello: String
+    allMovies: [Movie]
+    movie(id: ID): Movie
   }
 `;
 
