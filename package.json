@@ -2,9 +2,18 @@
   "name": "movieql",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
   "repository": "https://github.com/wonjieun/movieql.git",
   "license": "MIT",
   "dependencies": {
+    "apollo-server": "^3.8.1",
+    "graphql": "^16.5.0",
     "graphql-yoga": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
