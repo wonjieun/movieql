@@ -6,17 +6,17 @@ const typeDefs = gql`
     name: String
   }
   type Movie {
-    id: ID
-    title: String
-    genre: Genre
+    id: ID!
+    title: String!
+    genre: Genre!
   }
   type Query {
-    allMovies: [Movie]
-    movie(id: ID): Movie
+    allMovies: [Movie!]!
+    movie(id: ID!): Movie
   }
   type Mutation {
-    postMovie(title: String, genre: ID): Movie
-    deleteMovie(id: ID): Boolean
+    postMovie(title: String!, genre: ID!): Movie!
+    deleteMovie(id: ID!): Boolean!
   }
 `;
 
