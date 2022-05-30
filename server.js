@@ -41,7 +41,7 @@ const typeDefs = gql`
     movie(id: ID!): Movie
   }
   type Mutation {
-    postMovie(title: String!, genre: ID!): Movie!
+    postMovie(title: String!, genreId: ID!): Movie!
     deleteMovie(id: ID!): Boolean!
   }
 `;
@@ -59,7 +59,10 @@ const resolvers = {
     },
   },
   Mutation: {
-    postMovie(_, { title, genre }) {
+    postMovie(_, { title, genreId }) {
+      if (!genres.some((genre) => genre.id === genreId)) {
+        throw new Error('genreId is not exist');
+      }
       const newMovie = {
         id: movies.length + 1,
         title,
