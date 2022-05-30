@@ -11,10 +11,21 @@ let movies = [
   },
 ];
 
+let genres = [
+  {
+    id: '1',
+    name: 'Action',
+  },
+  {
+    id: '2',
+    name: 'Adventure',
+  },
+];
+
 const typeDefs = gql`
   type Genre {
-    id: ID
-    name: String
+    id: ID!
+    name: String!
   }
   type Movie {
     id: ID!
@@ -22,6 +33,7 @@ const typeDefs = gql`
     genre: Genre!
   }
   type Query {
+    allGenres: [Genre!]!
     allMovies: [Movie!]!
     movie(id: ID!): Movie
   }
@@ -33,6 +45,9 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    allGenres() {
+      return genres;
+    },
     allMovies() {
       return movies;
     },
