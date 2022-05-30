@@ -26,6 +26,7 @@ const typeDefs = gql`
   type Genre {
     id: ID!
     name: String!
+    tag: String!
   }
   type Movie {
     id: ID!
@@ -70,6 +71,11 @@ const resolvers = {
       }
       movies = movies.filter((movie) => movie.id !== id);
       return true;
+    },
+  },
+  Genre: {
+    tag({ name }) {
+      return `#${name}`;
     },
   },
 };
