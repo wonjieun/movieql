@@ -1,5 +1,16 @@
 import { ApolloServer, gql } from 'apollo-server';
 
+const movies = [
+  {
+    id: '1',
+    title: 'Doctor Strange in the Multiverse of Madness',
+  },
+  {
+    id: '2',
+    title: 'Thor: Love and Thunder',
+  },
+];
+
 const typeDefs = gql`
   type Genre {
     id: ID
@@ -22,9 +33,11 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    movie() {
-      console.log("I'm called");
-      return null;
+    allMovies() {
+      return movies;
+    },
+    movie(root, { id }) {
+      return movies.find((movie) => movie.id === id);
     },
   },
 };
