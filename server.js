@@ -43,7 +43,7 @@ const typeDefs = gql`
   }
   type Query {
     allGenres: [Genre!]!
-    allMovies: [Movie!]!
+    allMyMovies: [Movie!]!
     movie(id: ID!): Movie
   }
   type Mutation {
@@ -57,7 +57,7 @@ const resolvers = {
     allGenres() {
       return genres;
     },
-    allMovies() {
+    allMyMovies() {
       return movies;
     },
     movie(root, { id }) {
