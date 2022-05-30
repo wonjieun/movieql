@@ -68,7 +68,8 @@ const typeDefs = gql`
     allMovies: [Movie!]!
     allGenres: [Genre!]!
     allMyMovies: [MyMovie!]!
-    movie(id: ID!): MyMovie
+    movie(id: ID!): Movie
+    myMovie(id: ID!): MyMovie
   }
   type Mutation {
     postMovie(title: String!, genreId: ID!): MyMovie!
@@ -90,6 +91,11 @@ const resolvers = {
       return movies;
     },
     movie(root, { id }) {
+      return fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+        .then((res) => res.json())
+        .then(({ data }) => data.movie);
+    },
+    myMovie(root, { id }) {
       return movies.find((movie) => movie.id === id);
     },
   },
