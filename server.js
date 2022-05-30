@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server';
 
-const movies = [
+let movies = [
   {
     id: '1',
     title: 'Doctor Strange in the Multiverse of Madness',
@@ -38,6 +38,23 @@ const resolvers = {
     },
     movie(root, { id }) {
       return movies.find((movie) => movie.id === id);
+    },
+  },
+  Mutation: {
+    postMovie(_, { title, genre }) {
+      const newMovie = {
+        id: movies.length + 1,
+        title,
+      };
+      movies.push(newMovie);
+      return newMovie;
+    },
+    deleteMovie(_, { id }) {
+      if (movies.findIndex((movie) => movie.id === id) < 0) {
+        return false;
+      }
+      movies = movies.filter((movie) => movie.id !== id);
+      return true;
     },
   },
 };
