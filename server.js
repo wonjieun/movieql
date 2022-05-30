@@ -68,7 +68,7 @@ const resolvers = {
       return newMovie;
     },
     deleteMovie(_, { id }) {
-      if (movies.findIndex((movie) => movie.id === id) < 0) {
+      if (!movies.some((movie) => movie.id === id)) {
         return false;
       }
       movies = movies.filter((movie) => movie.id !== id);
