@@ -4,10 +4,12 @@ let movies = [
   {
     id: '1',
     title: 'Doctor Strange in the Multiverse of Madness',
+    genreId: '1',
   },
   {
     id: '2',
     title: 'Thor: Love and Thunder',
+    genreId: '2',
   },
 ];
 
@@ -76,6 +78,11 @@ const resolvers = {
   Genre: {
     tag({ name }) {
       return `#${name}`;
+    },
+  },
+  Movie: {
+    genre({ genreId }) {
+      return genres.find((genre) => genre.id === genreId);
     },
   },
 };
