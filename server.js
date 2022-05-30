@@ -36,18 +36,22 @@ const typeDefs = gql`
     """
     tag: String!
   }
-  type Movie {
+  type MyMovie {
     id: ID!
     title: String!
     genre: Genre!
   }
+  type Movie {
+    id: ID!
+  }
   type Query {
+    allMovies: [Movie!]!
     allGenres: [Genre!]!
-    allMyMovies: [Movie!]!
-    movie(id: ID!): Movie
+    allMyMovies: [MyMovie!]!
+    movie(id: ID!): MyMovie
   }
   type Mutation {
-    postMovie(title: String!, genreId: ID!): Movie!
+    postMovie(title: String!, genreId: ID!): MyMovie!
     deleteMovie(id: ID!): Boolean!
   }
 `;
@@ -89,7 +93,7 @@ const resolvers = {
       return `#${name}`;
     },
   },
-  Movie: {
+  MyMovie: {
     genre({ genreId }) {
       return genres.find((genre) => genre.id === genreId);
     },
