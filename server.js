@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server';
+import fetch from 'node-fetch';
 
 let movies = [
   {
@@ -77,6 +78,11 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    allMovies() {
+      return fetch('https://yts.mx/api/v2/list_movies.json')
+        .then((res) => res.json())
+        .then(({ data }) => data.movies);
+    },
     allGenres() {
       return genres;
     },
