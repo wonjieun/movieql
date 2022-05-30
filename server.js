@@ -25,9 +25,15 @@ let genres = [
 ];
 
 const typeDefs = gql`
+  """
+  영화 장르
+  """
   type Genre {
     id: ID!
     name: String!
+    """
+    해시태그(#) 장르
+    """
     tag: String!
   }
   type Movie {
